@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Bot Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- サイドバー -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <button id="toggle-sidebar" class="icon-btn" title="メニュー開閉">☰</button>
+        <button id="new-chat-btn" class="new-chat-btn">＋ 新しいチャット</button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">学習ステータス</div>
+        <div class="stats-box">
+          <div class="stat-row"><span>記憶単語数:</span><strong id="stat-words">0</strong></div>
+          <div class="stat-row"><span>マルコフ連鎖キー:</span><strong id="stat-markov">0</strong></div>
+          <div class="stat-row"><span>総会話ターン:</span><strong id="stat-turns">0</strong></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">学習した言葉（一部）</div>
+        <div id="learned-words-list" class="word-tags">
+          <span class="empty-note">まだ学習データがありません</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="export-btn" class="sub-btn">学習記録をJSON形式で保存</button>
+        <label class="sub-btn file-label">
+          JSONを読み込む
+          <input type="file" id="import-input" accept=".json" hidden>
+        </label>
+        <button id="reset-btn" class="sub-btn danger">学習データを初期化する</button>
+      </div>
+    </aside>
+
+    <!-- メインチャットエリア -->
+    <main class="main-area">
+      <header class="top-bar">
+        <div class="model-badge">
+          <span class="sparkle">✦</span>Simple Bot<span class="tag">Client-Side</span>
+        </div>
+      </header>
+
+      <div id="chat-log" class="chat-log">
+        <div id="welcome-screen" class="welcome-screen">
+          <h1 class="gradient-text">こんにちは</h1>
+          <p class="subtitle">会話をするたびに、少しずつ語彙が増えます。</p>
+
+          <div class="prompt-chips">
+            <button class="chip" data-prompt="こんにちは！今日もいい天気だね">挨拶してみる</button>
+            <button class="chip" data-prompt="ラーメンとカレーライスが大好きです">好きな食べ物を教える</button>
+            <button class="chip" data-prompt="何か面白いこと言って！">無茶振り</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <form id="chat-form" class="input-box">
+          <input type="text" id="user-input" placeholder="メッセージを入力..." autocomplete="off" required>
+          <button type="submit" id="send-btn" title="送信">➤</button>
+        </form>
+        <div class="disclaimer">個人情報を送信しないでください。</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
